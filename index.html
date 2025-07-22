@@ -2,21 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IMDb Top 250 Viz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hollywood Movie Ratings Story</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet"/>
+
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://unpkg.com/d3-annotation@2"></script>
+
   <style>
-    body { font-family: sans-serif; margin: 0; }
-    #controls { padding: 10px; }
-    #next { padding: 6px 12px; }
+    body {
+      margin: 0;
+      background: #0b0f3b;
+      color: #ffc300;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.5px;
+    }
+    svg {
+      display: block;
+      margin: 60px auto;
+      padding: 10px;
+      background: #1d3264;
+      border-radius: 8px;
+    }
+    #controls {
+      text-align: center;
+      margin: 20px 0;
+    }
+    button {
+      background: #ffc300;
+      color: #0b0f3b;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 24px;
+      margin: 0 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover:not(:disabled) { background: #e5b000; }
+    button:disabled { opacity: 0.4; cursor: default; }
+    #dash-controls {
+      display: none;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+    #dash-controls select {
+      background: #1d3264;
+      color: #ffc300;
+      border: 1px solid #ffc300;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+    }
+    .tooltip {
+      position: absolute;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      pointer-events: none;
+      font-family: sans-serif;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
   </style>
 </head>
+
 <body>
   <div id="controls">
+    <button id="prev" disabled>← Back</button>
     <button id="next">Next →</button>
+    <span id="dash-controls">
+      <label for="genre-select">Filter by Genre:</label>
+      <select id="genre-select"></select>
+    </span>
   </div>
-  <svg id="chart" width="800" height="500"></svg>
+
+  <svg id="chart" width="960" height="600"></svg>
   <script src="js/main.js"></script>
 </body>
 </html>
