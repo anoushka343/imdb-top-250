@@ -50,14 +50,11 @@ function introScene() {
   container.append("h1")
     .text("IMDB’s Top 250 Hollywood Movies");
 
-  // -- your descriptive text for this slide --
-  container.append("div")
-    .attr("class", "desc-box")
-    .text("Welcome!  In this visualization you’ll explore the top IMDb‑rated Hollywood films.");
-
-  // -- your personal notes --
+  // a readonly textarea for your own description:
   container.append("textarea")
-    .attr("placeholder", "Write your own notes here…");
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("Welcome! In this visualization you’ll explore the top IMDb‑rated Hollywood films.");
 }
 
 function histogramScene(data) {
@@ -106,18 +103,14 @@ function histogramScene(data) {
       .attr("text-anchor","middle")
       .text("Number of Movies");
 
-  // subtitle
   const container = d3.select("#my_dataviz");
   container.append("h2").text("Rating Distribution");
 
-  // descriptive text
-  container.append("div")
-    .attr("class","desc-box")
-    .text("This histogram shows how ratings cluster—notice where most films fall.");
-
-  // your notes
+  // readonly textarea for your slide description
   container.append("textarea")
-    .attr("placeholder","Write your own notes here…");
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("This histogram shows how most movies cluster around the 7–9 star range.");
 }
 
 function scatterScene(data) {
@@ -163,16 +156,16 @@ function scatterScene(data) {
 
   const container = d3.select("#my_dataviz");
   container.append("h2").text("Ratings Over Time");
-  container.append("div")
-    .attr("class","desc-box")
-    .text("Each dot is a movie; see how ratings have trended over the years.");
   container.append("textarea")
-    .attr("placeholder","Write your own notes here…");
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("Here you can see if ratings have improved (or declined) over the decades.");
 }
 
 function top5Scene(data) {
-  const top5 = data
-    .slice().sort((a,b)=>b.rating-a.rating).slice(0,5);
+  const top5 = data.slice()
+    .sort((a,b)=>b.rating-a.rating)
+    .slice(0,5);
 
   const margin = {top: 20, right: 20, bottom: 50, left: 200};
   const fullW  = 700, fullH = 400;
@@ -216,11 +209,10 @@ function top5Scene(data) {
 
   const container = d3.select("#my_dataviz");
   container.append("h2").text("Top 5 Movies");
-  container.append("div")
-    .attr("class","desc-box")
-    .text("Here are the five all‑time highest‑rated films on IMDb.");
   container.append("textarea")
-    .attr("placeholder","Write your own notes here…");
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("These are the five highest‑rated films ever, according to IMDb users.");
 }
 
 function dashboardScene(data) {
@@ -242,11 +234,10 @@ function dashboardScene(data) {
 
   const container = d3.select("#my_dataviz");
   container.append("h2").text("Explore All Movies");
-  container.append("div")
-    .attr("class","desc-box")
-    .text("Use the dropdown to filter by genre and explore individual film ratings.");
   container.append("textarea")
-    .attr("placeholder","Write your own notes here…");
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("Use the dropdown above to filter by genre and inspect individual titles.");
 }
 
 function renderDashboard(data) {
@@ -255,9 +246,7 @@ function renderDashboard(data) {
   const chosen = d3.select("#genre-select").property("value");
   const filt = chosen === "All"
     ? data
-    : data.filter(d=>
-        d.genre.split(",").map(s=>s.trim()).includes(chosen)
-      );
+    : data.filter(d=>d.genre.split(",").map(s=>s.trim()).includes(chosen));
 
   const margin = {top: 20, right: 20, bottom: 50, left: 60};
   const fullW  = 600, fullH = 400;
