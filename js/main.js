@@ -1,4 +1,3 @@
-// 1) All five scenes
 const scenes = [
   introScene,
   histogramScene,
@@ -8,7 +7,6 @@ const scenes = [
 ];
 let curr = 0;
 
-// 2) Load data once
 d3.csv("data/movies.csv").then(raw => {
   const movies = raw.map(d => ({
     title:  d.name,
@@ -29,7 +27,6 @@ d3.csv("data/movies.csv").then(raw => {
   });
 });
 
-// 3) Central draw()
 function draw(data) {
   d3.select("#prev").property("disabled", curr === 0);
   d3.select("#next").property("disabled", curr === scenes.length - 1);
@@ -43,14 +40,11 @@ function draw(data) {
   scenes[curr](data);
 }
 
-// 4) Scenes
-
 function introScene() {
   const container = d3.select("#my_dataviz");
   container.append("h1")
     .text("IMDB’s Top 250 Hollywood Movies");
 
-  // a readonly textarea for your own description:
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
@@ -86,13 +80,12 @@ function histogramScene(data) {
       .attr("height", d=>height - y(d.length))
       .attr("fill", "#69b3a2");
 
-  // axes
+
   svg.append("g")
       .attr("transform", `translate(0,${height})`)
       .call(d3.axisBottom(x));
   svg.append("g").call(d3.axisLeft(y));
 
-  // axis labels
   svg.append("text")
       .attr("x", width/2).attr("y", height + margin.bottom - 10)
       .attr("text-anchor","middle")
@@ -106,11 +99,10 @@ function histogramScene(data) {
   const container = d3.select("#my_dataviz");
   container.append("h2").text("Rating Distribution");
 
-  // readonly textarea for your slide description
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("This histogram shows how most movies cluster around the 7–9 star range.");
+    .text("This histogram shows the count of movies and their rating. Most movies cluster around the 7–9 star range overall.");
 }
 
 function scatterScene(data) {
@@ -159,7 +151,7 @@ function scatterScene(data) {
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("Here you can see if ratings have improved (or declined) over the decades.");
+    .text("Here the scatterplot shows the year the movie was released and the rating. It can be seen where more dots (movies) are centralized and if there are any trends.");
 }
 
 function top5Scene(data) {
@@ -212,11 +204,10 @@ function top5Scene(data) {
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("These are the five highest‑rated films ever, according to IMDb users.");
+    .text("These are the five highest rated films ever, according to IMDb users.");
 }
 
 function dashboardScene(data) {
-  // build dropdown if first time
   const genres = Array.from(
     new Set(data.flatMap(d=>d.genre.split(",").map(s=>s.trim())))
   ).sort();
@@ -237,7 +228,7 @@ function dashboardScene(data) {
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("Use the dropdown above to filter by genre and inspect individual titles.");
+    .text("Use the dropdown above to filter by genre and see the movie titles by hovering over the dots.");
 }
 
 function renderDashboard(data) {
