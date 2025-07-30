@@ -8,7 +8,6 @@ const scenes = [
 ];
 let curr = 0;
 
-// 2) Load data once
 d3.csv("data/movies.csv").then(raw => {
   const movies = raw.map(d => ({
     title:  d.name,
@@ -33,38 +32,31 @@ d3.csv("data/movies.csv").then(raw => {
   });
 });
 
-// 3) Central draw()
+
 function draw(data) {
-  // Back button
   if (curr === 0) {
     d3.select("#prev").property("disabled", true);
   } else {
     d3.select("#prev").property("disabled", false);
   }
 
-  // Next button
   if (curr === scenes.length - 1) {
     d3.select("#next").property("disabled", true);
   } else {
     d3.select("#next").property("disabled", false);
   }
 
-  // Show or hide genre filter
   if (curr === scenes.length - 1) {
     d3.select("#genre-container").style("display", "block");
   } else {
     d3.select("#genre-container").style("display", "none");
   }
 
-  // Clear out previous slide
   d3.select("#charts").html("");
   d3.select("#tooltip").style("display", "none");
 
-  // Draw current scene
   scenes[curr](data);
 }
-
-// 4) Scenes
 
 function introScene() {
   const container = d3.select("#charts");
@@ -90,7 +82,6 @@ function histogramScene(data) {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  // X scale & bins
   const x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.rating; }))
     .nice()
@@ -101,13 +92,11 @@ function histogramScene(data) {
     .thresholds(x.ticks(20));
   const bins = histogram(data.map(function(d) { return d.rating; }));
 
-  // Y scale
   const y = d3.scaleLinear()
     .domain([0, d3.max(bins, function(d) { return d.length; })])
     .nice()
     .range([height, 0]);
 
-  // Bars
   svg.selectAll("rect")
     .data(bins)
     .enter().append("rect")
@@ -117,14 +106,12 @@ function histogramScene(data) {
       .attr("height", function(d) { return height - y(d.length); })
       .attr("fill", "#69b3a2");
 
-  // Axes
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
   svg.append("g")
       .call(d3.axisLeft(y));
 
-  // Axis labels
   svg.append("text")
       .attr("x", width / 2)
       .attr("y", height + margin.bottom - 10)
