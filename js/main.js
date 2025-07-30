@@ -1,4 +1,3 @@
-// 1) All five scenes
 const scenes = [
   introScene,
   histogramScene,
