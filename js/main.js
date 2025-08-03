@@ -261,7 +261,7 @@ function histogram(data) {
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("This histogram shows the count of movies by rating. Notice most films cluster around 7–9 stars.");
+    .text("This histogram shows the count of movies by rating. Notice most films cluster around 7–9 stars. The bars highlight in red show a higher rating than other movies.");
 }
 
 /*
@@ -387,7 +387,7 @@ function scatterplot(data) {
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("Scatterplot of release year vs. rating. Look for clusters or trends over time.");
+    .text("Scatterplot of release year vs. rating. Look for clusters or trends over time. The dots highlighted in red show higher ratings than other movies.");
 }
 
 /*
@@ -527,7 +527,7 @@ function top5(data) {
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("These are the five highest rated films ever, according to IMDb users.");
+    .text("These are the five highest rated films ever, according to IMDb users. The Shawshank Redemption is highlighted in red, showing it is the highest rating movie,");
 }
 
 //create the dashboard 
@@ -645,3 +645,6 @@ function renderDashboard(data) {
         tip.style("display", "none");
       });
 }
+
+ 
+
