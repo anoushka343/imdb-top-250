@@ -34,7 +34,7 @@ d3.select("#prev").on("click", () => {
   }
 });
 })
-.catch(err => console.error("csv failed", err));
+
 
 //helper to highlight the important parts of each chart
 
@@ -353,7 +353,7 @@ function scatterplot(data) {
         return y(d.rating); })
       .attr("r", 4)
       .attr("fill", function(d) {
-        if(d.x0 >= 9) {
+        if(d.rating >= 9) {
           return "#FFE699";
         }
         else {
@@ -500,7 +500,7 @@ function top5(data) {
           return "#FFE699";
         }
         else {
-          return "#FFD1DC";
+          return "#FF6F61";
         }
       });
   //add the x and y axis to the chart
@@ -631,7 +631,14 @@ function renderDashboard(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "#FF6F61")
+      .attr("fill", function(d){
+        if (d.rating >= 9) {
+          return "#FFE699";
+        }
+        else {
+          return "#FF6F61";
+        }
+      })
       .attr("opacity", 0.7)
       .on("mouseover", function(event, d) {
         tip.style("display", "block")
