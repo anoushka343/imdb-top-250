@@ -16,9 +16,27 @@ d3.csv("data/movies.csv", m => ({
   year: +m.year,
   rating: +m.rating,
   genre: m.genre
-})).then(movies => {
-  console.log(movies);
+}))
+.then(movies => {
+  console.log("loaded", movies.length, "movies");
+  draw(movies);
+
+  d3.select("#next").on("click", () => {
+    if(count < scenes.length - 1) {
+      count++;
+      draw(movies);
+    }
 });
+d3.select("#prev").on("click", () => {
+  if(count > 0) {
+    count--;
+    draw(movies);
+  }
+});
+})
+.catch(err => console.error("csv failed", err));
+
+
 /*d3.csv("data/movies.csv").then(raw => {
   const movies = raw.map(d => ({
     title:  d.name,
@@ -27,25 +45,6 @@ d3.csv("data/movies.csv", m => ({
     genre:  d.genre
   }));*/
 
-  //draw the first scene
-  draw(movies);
-
-  //if next is selected then advance
-  d3.select("#next").on("click", function() {
-    if (count < scenes.length - 1) {
-      //increment
-      count = count + 1;
-      draw(movies);
-    }
-  });
-  //if previous is selected then go back if it's within bounds
-  d3.select("#prev").on("click", function() {
-    if (count > 0) {
-      //decrement
-      count = count - 1;
-      draw(movies);
-    }
-  });
 
 
 //this will draw all the scenes and controls
@@ -56,12 +55,12 @@ function draw(data) {
   }
   else {
     //otherwise allow it to continue
-    d3.select("#prev").attr("disabled, null");
+    d3.select("#prev").attr("disabled", null);
   }
 
   //if within bounds then advance
   if(count == scenes.length - 1) {
-    d3.select("next").attr("disabled", true);
+    d3.select("#next").attr("disabled", true);
   }
   //otherwise disable
   else {
@@ -345,7 +344,7 @@ function scatterplot(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "#FFD700)")
+      .attr("fill", "#FFD7002")
       .attr("opacity", 0.7);
     
       //add all the axes tickets and text
