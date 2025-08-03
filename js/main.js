@@ -328,7 +328,7 @@ function histogram(data) {
     x: x(8.1),
     y: y(highest_count),
     dy: 50,
-    dx: 10
+    dx: 5
   }
 ]
 const makeAnnotations = d3.annotation()
@@ -477,7 +477,7 @@ const annotations = [
     x: x(2010),
     y: y(9.3),
     dy: 50,
-    dx: -400
+    dx: -300
   }
 ]
 
@@ -641,12 +641,6 @@ function dashboard(data) {
     }))
   ).sort();
 
-  const container = d3.select("#charts");
-  container.append("h2").text("Explore All Movies");
-  container.append("textarea")
-    .attr("class", "desc-box")
-    .attr("readonly", true)
-    .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
     
   const sel = d3.select("#genre-select");
   if (sel.selectAll("option").empty()) {
