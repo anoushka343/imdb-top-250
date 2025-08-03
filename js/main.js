@@ -225,7 +225,7 @@ function histogram(data) {
         return x(d.x1) - x(d.x0) - 1; })
       .attr("height", function(d) { 
         return height - y(d.length); })
-      .attr("fill", "#FFD700");
+      .attr("fill", "black");
   
   //add everything to the svg tag
   svg.append("g")
