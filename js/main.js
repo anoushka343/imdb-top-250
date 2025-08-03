@@ -226,14 +226,14 @@ function histogram(data) {
         return x(d.x1) - x(d.x0) - 1; })
       .attr("height", function(d) { 
         return height - y(d.length); })
-      .attr("fill", function(d)) {
+      .attr("fill", function(d) {
         if(d.x0 >= 9) {
           return "#EE6C4D";
         }
         else {
           return "#7B8FFF"; 
         }
-      }
+      })
   
   //add everything to the svg tag
   svg.append("g")
