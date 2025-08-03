@@ -479,7 +479,7 @@ function top5(data) {
       .attr("width", function(d) { 
         return x(d.rating); })
       .attr("height", y.bandwidth())
-      .attr("fill", "#FFD700");
+      .attr("fill", "black");
   //add the x and y axis to the chart
   svg.append("g").call(d3.axisLeft(y));
   svg.append("g")
