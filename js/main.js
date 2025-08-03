@@ -228,7 +228,7 @@ function histogram(data) {
         return height - y(d.length); })
       .attr("fill", function(d) {
         if(d.x0 >= 9 && typeof d.x0 !== "undefined") {
-          return "#FFE699";
+          return "#FFC107";
         }
         else {
           return "#FF6F61"; 
@@ -354,7 +354,7 @@ function scatterplot(data) {
       .attr("r", 4)
       .attr("fill", function(d) {
         if(d.rating >= 9) {
-          return "#FFE699";
+          return "#FFC107";
         }
         else {
           return "#FF6F61"; 
@@ -497,7 +497,7 @@ function top5(data) {
       .attr("height", y.bandwidth())
       .attr("fill", function(d,i){
         if(i ===0) {
-          return "#FFE699";
+          return "#FFC107";
         }
         else {
           return "#FF6F61";
@@ -633,7 +633,7 @@ function renderDashboard(data) {
       .attr("r", 4)
       .attr("fill", function(d){
         if (d.rating >= 9) {
-          return "#FFE699";
+          return "#FFC107";
         }
         else {
           return "#FF6F61";
