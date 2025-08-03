@@ -323,7 +323,8 @@ function histogram(data) {
     dx: 20
   }
 ]
-const makeAnnotations = d3.annotationLabel()
+const makeAnnotations = d3.annotation()
+  .type(d3.annotationLabel)
   .annotations(annotations)
   .textWrap(80);
 svg.append("g")
@@ -468,7 +469,14 @@ const annotations = [
     dx: 30
   }
 ]
-svg.append("g").call(d3.annotationLabel().annotations(annotations).textWrap(89));
+const makeAnnotations = d3.annotation()
+.type(d3.annotationLabel)
+.annotations(annotations)
+.textWrap(80);
+
+svg.append("g").attr("cllas", "annotation-group").call(makeAnnotations);
+
+
   const container = d3.select("#charts");
   container.append("h2").text("Ratings Over Time");
   container.append("textarea")
