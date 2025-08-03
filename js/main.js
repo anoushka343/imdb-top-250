@@ -328,7 +328,7 @@ function histogram(data) {
     x: x(8.1),
     y: y(highest_count),
     dy: 50,
-    dx: 100
+    dx: 10
   }
 ]
 const makeAnnotations = d3.annotation()
@@ -472,13 +472,12 @@ function scatterplot(data) {
 const annotations = [
   {
     note: {
-      label: "Outliers greater than or equal to 9 stars",
-      title: "Films break a rating of 9"
+      label: "Outliers are ratings greater than or equal to 9 stars",
     },
     x: x(2010),
     y: y(9.3),
     dy: 50,
-    dx: 30
+    dx: -400
   }
 ]
 
