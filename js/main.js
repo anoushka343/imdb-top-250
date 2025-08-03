@@ -661,7 +661,6 @@ function dashboard(data) {
 }
 
 function renderDashboard(data) {
-  //clear the old chart every time
   d3.select("#charts").html("");
 
   const container = d3.select("#charts");
@@ -670,13 +669,6 @@ function renderDashboard(data) {
     .attr("class", "desc-box")
     .attr("readonly", true)
     .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
-
-  const filterLabel = d3.select("label[for='genre-select']");
-  if (!filterLabel.empty()) {
-    container.node().appendChild(filterLabel.node());
-  }
-  const sel = d3.select("#genre-select");
-  container.node().appendChild(sel.node());
   const chosen = d3.select("#genre-select").property("value");
   let filter;
   if (chosen === "All") {
@@ -764,6 +756,3 @@ function renderDashboard(data) {
         tip.style("display", "none");
       });
 }
-
- 
-
