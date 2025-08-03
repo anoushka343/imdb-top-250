@@ -560,7 +560,7 @@ function dashboard(data) {
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
-    .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings.");
+    .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
 }
 
 function renderDashboard(data) {
