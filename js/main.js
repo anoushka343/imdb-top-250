@@ -566,6 +566,12 @@ function top5(data) {
   const  total_height = 400;
   const width  = total_width - margin.left - margin.right;
   const height = total_height - margin.top  - margin.bottom;
+  const container = d3.select("#charts");
+  container.append("h2").text("Top 5 Movies");
+  container.append("textarea")
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("These are the five highest rated films ever, according to IMDb users. The Shawshank Redemption is highlighted in yellow, showing it is the highest rating movie,");
 
   //add the size of the chart
   const svg = d3.select("#charts")
@@ -625,12 +631,7 @@ function top5(data) {
       .attr("text-anchor", "middle")
       .text("Movie Title");
 
-  const container = d3.select("#charts");
-  container.append("h2").text("Top 5 Movies");
-  container.append("textarea")
-    .attr("class", "desc-box")
-    .attr("readonly", true)
-    .text("These are the five highest rated films ever, according to IMDb users. The Shawshank Redemption is highlighted in yellow, showing it is the highest rating movie,");
+  
 }
 
 //create the dashboard 
@@ -642,6 +643,12 @@ function dashboard(data) {
     }))
   ).sort();
 
+  const container = d3.select("#charts");
+  container.append("h2").text("Explore All Movies");
+  container.append("textarea")
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
   const sel = d3.select("#genre-select");
   if (sel.selectAll("option").empty()) {
     sel.selectAll("option")
@@ -657,12 +664,7 @@ function dashboard(data) {
 
   renderDashboard(data);
 
-  const container = d3.select("#charts");
-  container.append("h2").text("Explore All Movies");
-  container.append("textarea")
-    .attr("class", "desc-box")
-    .attr("readonly", true)
-    .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
+  
 }
 
 function renderDashboard(data) {
