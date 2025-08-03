@@ -225,7 +225,7 @@ function histogram(data) {
         return x(d.x1) - x(d.x0) - 1; })
       .attr("height", function(d) { 
         return height - y(d.length); })
-      .attr("fill", "black");
+      .attr("fill", "#7B8FFF");
   
   //add everything to the svg tag
   svg.append("g")
@@ -344,7 +344,7 @@ function scatterplot(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "black")
+      .attr("fill", "#7B8FFF")
       .attr("opacity", 0.7);
     
       //add all the axes tickets and text
@@ -479,7 +479,7 @@ function top5(data) {
       .attr("width", function(d) { 
         return x(d.rating); })
       .attr("height", y.bandwidth())
-      .attr("fill", "black");
+      .attr("fill", "#7B8FFF");
   //add the x and y axis to the chart
   svg.append("g").call(d3.axisLeft(y));
   svg.append("g")
