@@ -323,8 +323,7 @@ function histogram(data) {
   const annotations = [
   {
     note: {
-      label: "Most of the top 250 movies cluster at this rating",
-      title: "Peak at a rating of 8.1"
+      label: "Most clustered near 8.1",
     },
     x: x(8.1),
     y: y(highest_count),
@@ -478,7 +477,7 @@ const annotations = [
     },
     x: x(2010),
     y: y(9.3),
-    dy: -50,
+    dy: 50,
     dx: 30
   }
 ]
@@ -649,6 +648,7 @@ function dashboard(data) {
     .attr("class", "desc-box")
     .attr("readonly", true)
     .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
+    
   const sel = d3.select("#genre-select");
   if (sel.selectAll("option").empty()) {
     sel.selectAll("option")
@@ -670,6 +670,12 @@ function dashboard(data) {
 function renderDashboard(data) {
   d3.select("#charts").html("");
 
+  const container = d3.select("#charts");
+  container.append("h2").text("Explore All Movies");
+  container.append("textarea")
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
   const chosen = d3.select("#genre-select").property("value");
   let filt;
   if (chosen === "All") {
