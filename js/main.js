@@ -310,7 +310,7 @@ function histogram(data) {
       .attr("text-anchor", "middle")
       .text("Number of Movies");
   const highest_bin = bins.find(d => d.x0 <= 8.1 && d.x1 > 8.1);
-  const higest_count = highest_bin.length;
+  const highest_count = highest_bin.length;
   const annotations = [
   {
     note: {
@@ -474,7 +474,7 @@ const makeAnnotations = d3.annotation()
 .annotations(annotations)
 .textWrap(80);
 
-svg.append("g").attr("cllas", "annotation-group").call(makeAnnotations);
+svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 
 
   const container = d3.select("#charts");
