@@ -476,7 +476,7 @@ const annotations = [
     },
     x: x(2010),
     y: y(9.3),
-    dy: 50,
+    dy: 30,
     dx: -300
   }
 ]
@@ -670,11 +670,11 @@ function renderDashboard(data) {
     .attr("readonly", true)
     .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
   const chosen = d3.select("#genre-select").property("value");
-  let filt;
+  let filter;
   if (chosen === "All") {
-    filt = data;
+    filter = data;
   } else {
-    filt = data.filter(function(d) {
+    filter = data.filter(function(d) {
       return d.genre.split(",").map(function(s) { return s.trim(); })
         .indexOf(chosen) >= 0;
     });
