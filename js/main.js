@@ -469,6 +469,11 @@ const annotations = [
     dx: 30
   }
 ]
+d3.select('#debug')
+  .append('div')
+  .text('d3.annotation is ' + typeof d3.annotation + 
+        ', d3.annotationLabel is ' + typeof d3.annotationLabel);
+
 const makeAnnotations = d3.annotation()
 .type(d3.annotationLabel)
 .annotations(annotations)

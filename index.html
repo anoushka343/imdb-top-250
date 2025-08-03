@@ -15,6 +15,7 @@
       margin: 0;
       padding: 20px;
     }
+
     #controls {
       /*this will have the back and next buttons*/
       margin-bottom: 10px;
@@ -71,6 +72,14 @@
   </style>
 </head>
 <body>
+  <div id="debug" style="color:red; padding:10px;"></div>
+  <script>
+    // show any runtime errors on screen
+    window.onerror = function(msg, url, line, col, err) {
+      document.getElementById('debug')
+        .innerHTML += `<div><strong>Error:</strong> ${msg} <em>(${line}:${col})</em></div>`;
+    };
+  </script>
 
 
   <div id="controls">
