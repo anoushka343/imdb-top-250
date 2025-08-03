@@ -228,10 +228,10 @@ function histogram(data) {
         return height - y(d.length); })
       .attr("fill", function(d) {
         if(d.x0 >= 9) {
-          return "#EE6C4D";
+          return "#FFD700";
         }
         else {
-          return "#7B8FFF"; 
+          return "#C71F37F"; 
         }
       })
   
@@ -354,9 +354,9 @@ function scatterplot(data) {
       .attr("r", 4)
       .attr("fill", function(d) {
         if (d.rating >= 9) {
-          return "#EE6C4D";
+          return "#FFD700";
         } else {
-          return "#7B8FFF";
+          return "#C71F37";
         }
 
       })
@@ -496,10 +496,10 @@ function top5(data) {
       .attr("height", y.bandwidth())
       .attr("fill", function(d,i){
         if(i ===0) {
-          return "#EE6C4D";
+          return "#FFD700";
         }
         else {
-          return "#7B8FFF";
+          return "#D72631";
         }
       });
   //add the x and y axis to the chart
@@ -630,7 +630,7 @@ function renderDashboard(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "#7B8FFF")
+      .attr("fill", "#C71F37")
       .attr("opacity", 0.7)
       .on("mouseover", function(event, d) {
         tip.style("display", "block")
