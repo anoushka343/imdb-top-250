@@ -240,13 +240,22 @@ function histogram(data) {
   const height = total_height - margin.top  - margin.bottom;
 
   //create the chart svg for the histogram
-  const svg = d3.select("#charts")
-    .append("svg")
-      .attr("width", total_width)
-      .attr("height", total_height)
+  const container = d3.select("#charts");
+  container.append("h2").text("Rating Distribution");
+  container.append("textarea")
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("This histogram shows the count of movies by rating. Notice most films cluster around 7–9 stars. The bars highlighted in yellow show higher‐rated movies.");
+
+    const svgContainer = container.append("svg")
+    .attr("viewBox", `0 0 ${total_width} ${total_height}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .style("width", "100%")
+    .style("height", "auto");
+
+  const svg = svgContainer
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
   //make the x-axis
   const x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { 
@@ -331,9 +340,9 @@ svg.append("g")
 .attr("class", "annotation-group")
 .call(makeAnnotations);
 
-  const container = d3.select("#charts");
-  container.append("h2").text("Rating Distribution");
-  container.append("textarea")
+  const c = d3.select("#charts");
+  c.append("h2").text("Rating Distribution");
+  c.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
     .text("This histogram shows the count of movies by rating. Notice most films cluster around 7–9 stars. The bars highlight in yellow show a higher rating than other movies.");
@@ -398,13 +407,22 @@ function scatterplot(data) {
   const height = total_height - margin.top  - margin.bottom;
 
   //add the chart size to the svg
-  const svg = d3.select("#charts")
-    .append("svg")
-      .attr("width", total_width)
-      .attr("height", total_height)
+  const container = d3.select("#charts");
+  container.append("h2").text("Ratings Over Time");
+  container.append("textarea")
+    .attr("class", "desc-box")
+    .attr("readonly", true)
+    .text("Scatterplot of release year vs. rating. Look for clusters or trends over time. Yellow dots show the highest‐rated films.");
+
+  const svgContainer = container.append("svg")
+    .attr("viewBox", `0 0 ${total_width} ${total_height}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .style("width", "100%")
+    .style("height", "auto");
+
+   const svg = svgContainer
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
   //do the scale linear
   const x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { 
@@ -469,10 +487,7 @@ const annotations = [
     dx: 30
   }
 ]
-d3.select('#debug')
-  .append('div')
-  .text('d3.annotation is ' + typeof d3.annotation + 
-        ', d3.annotationLabel is ' + typeof d3.annotationLabel);
+
 
 const makeAnnotations = d3.annotation()
 .type(d3.annotationLabel)
@@ -482,9 +497,9 @@ const makeAnnotations = d3.annotation()
 svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 
 
-  const container = d3.select("#charts");
-  container.append("h2").text("Ratings Over Time");
-  container.append("textarea")
+  const C = d3.select("#charts");
+  c.append("h2").text("Ratings Over Time");
+  c.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
     .text("Scatterplot of release year vs. rating. Look for clusters or trends over time. The dots highlighted in yellow show higher ratings than other movies.");
