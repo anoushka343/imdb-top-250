@@ -332,8 +332,8 @@ function histogram(data) {
     dx: 20
   }
 ]
-const makeAnnotations = d3.annotation()
-  .type(d3.annotationLabel)
+const makeAnnotations = d3Annotation.annotation()
+  .type(d3Annotation.annotationLabel)
   .annotations(annotations)
   .textWrap(80);
 svg.append("g")
@@ -484,10 +484,10 @@ const annotations = [
 ]
 
 
-const makeAnnotations = d3.annotation()
-.type(d3.annotationLabel)
-.annotations(annotations)
-.textWrap(80);
+const makeAnnotations = d3Annotation.annotation()
+  .type(d3Annotation.annotationLabel)
+  .annotations(annotations)
+  .textWrap(80);
 
 svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 
