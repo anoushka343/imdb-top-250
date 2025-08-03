@@ -309,22 +309,26 @@ function histogram(data) {
       .attr("y", -margin.left + 15)
       .attr("text-anchor", "middle")
       .text("Number of Movies");
-  
+  const highest_bin = bins.find(d => d.x0 <= 8.1 && d.x1 > 8.1);
+  const higest_count = highest_bin.length;
   const annotations = [
   {
     note: {
       label: "Most of the top 250 movies cluster at this rating",
       title: "Peak at a rating of 8.1"
     },
-    x: 8.1,
-    y: bins.find(d => d.x0 <= 8.1 && d.x1 > 8.1).length,
+    x: x(8.1),
+    y: y(highest_count),
     dy: -30,
     dx: 20
   }
 ]
-const makeAnnotations = d3.annotation()
+const makeAnnotations = d3.annotationLabel()
   .annotations(annotations)
-svg.append("g").call(makeAnnotations);
+  .textWrap(80);
+svg.append("g")
+.attr("class", "annotation-group")
+.call(makeAnnotations);
 
   const container = d3.select("#charts");
   container.append("h2").text("Rating Distribution");
@@ -452,23 +456,19 @@ function scatterplot(data) {
       .attr("y", -margin.left + 15)
       .attr("text-anchor", "middle")
       .text("IMDb Rating");
-
 const annotations = [
   {
     note: {
-      label: "These films have ratings of 9 or higher",
-      title: "Highest outliers"
+      label: "Outliers greater than or equal to 9 stars",
+      title: "Films break a rating of 9"
     },
     x: x(2010),
-    y: y(9.2),
-    dy: -40,
+    y: y(9.3),
+    dy: -50,
     dx: 30
   }
 ]
-const makeAnnotations = d3.annotation()
-  .annotations(annotations)
-svg.append("g").call(d3.annotation().annotations(makeAnnotations));
-
+svg.append("g").call(d3.annotationLabel().annotations(annotations).textWrap(89));
   const container = d3.select("#charts");
   container.append("h2").text("Ratings Over Time");
   container.append("textarea")
