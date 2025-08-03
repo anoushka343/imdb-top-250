@@ -340,12 +340,7 @@ svg.append("g")
 .attr("class", "annotation-group")
 .call(makeAnnotations);
 
-  const c = d3.select("#charts");
-  c.append("h2").text("Rating Distribution");
-  c.append("textarea")
-    .attr("class", "desc-box")
-    .attr("readonly", true)
-    .text("This histogram shows the count of movies by rating. Notice most films cluster around 7–9 stars. The bars highlight in yellow show a higher rating than other movies.");
+
 }
 
 /*
@@ -496,13 +491,6 @@ const makeAnnotations = d3.annotation()
 
 svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 
-
-  const C = d3.select("#charts");
-  c.append("h2").text("Ratings Over Time");
-  c.append("textarea")
-    .attr("class", "desc-box")
-    .attr("readonly", true)
-    .text("Scatterplot of release year vs. rating. Look for clusters or trends over time. The dots highlighted in yellow show higher ratings than other movies.");
 }
 
 /*
