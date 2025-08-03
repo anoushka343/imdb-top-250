@@ -328,7 +328,7 @@ function histogram(data) {
     x: x(8.1),
     y: y(highest_count),
     dy: 50,
-    dx: 50
+    dx: 150
   }
 ]
 const makeAnnotations = d3.annotation()
