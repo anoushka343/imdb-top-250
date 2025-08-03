@@ -178,6 +178,60 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 });
 </script>
 */
+
+/*
+annotation code:const annotations = [
+  {
+    note: {
+      label: "Here is the annotation label",
+      title: "Annotation title"
+    },
+    x: 100,
+    y: 100,
+    dy: 100,
+    dx: 100
+  }
+]
+
+// Add annotation to the chart
+// Features of the annotation
+const annotations = [
+  {
+    note: {
+      label: "Here is the annotation label",
+      title: "Annotation title"
+    },
+    x: 100,
+    y: 100,
+    dy: 100,
+    dx: 100
+  }
+]
+
+// Add annotation to the chart
+// Features of the annotation
+const annotations = [
+  {
+    note: {
+      label: "Here is the annotation label",
+      title: "Annotation title"
+    },
+    x: 100,
+    y: 100,
+    dy: 100,
+    dx: 100
+  }
+]
+const makeAnnotations = d3.annotation()
+  .annotations(annotations)
+d3.select("#example1")
+  .append("g")
+  .call(makeAnnotations)
+
+
+</script>
+
+*/
 function histogram(data) {
   const margin = {top: 20, right: 20, bottom: 50, left: 60};
   const total_width  = 600;
@@ -255,6 +309,22 @@ function histogram(data) {
       .attr("y", -margin.left + 15)
       .attr("text-anchor", "middle")
       .text("Number of Movies");
+  
+  const annotations = [
+  {
+    note: {
+      label: "Most of the top 250 movies cluster at this rating",
+      title: "Peak at a rating of 8.1"
+    },
+    x: 8.1,
+    y: bins.find(d => d.x0 <= 8.1 && d.x1 > 8.1).length,
+    dy: -30,
+    dx: 20
+  }
+]
+const makeAnnotations = d3.annotation()
+  .annotations(annotations)
+svg.append("g").call(makeAnnotations);
 
   const container = d3.select("#charts");
   container.append("h2").text("Rating Distribution");
@@ -382,6 +452,22 @@ function scatterplot(data) {
       .attr("y", -margin.left + 15)
       .attr("text-anchor", "middle")
       .text("IMDb Rating");
+
+const annotations = [
+  {
+    note: {
+      label: "These films have ratings of 9 or higher",
+      title: "Highest outliers"
+    },
+    x: x(2010),
+    y: y(9.2),
+    dy: -40,
+    dx: 30
+  }
+]
+const makeAnnotations = d3.annotation()
+  .annotations(annotations)
+svg.append("g").call(d3.annotation().annotations(makeAnnotations));
 
   const container = d3.select("#charts");
   container.append("h2").text("Ratings Over Time");
