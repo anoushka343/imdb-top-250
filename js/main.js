@@ -344,7 +344,7 @@ function scatterplot(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "#FFD700")
+      .attr("fill", "black")
       .attr("opacity", 0.7);
     
       //add all the axes tickets and text
@@ -608,7 +608,7 @@ function renderDashboard(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "#FFD700")
+      .attr("fill", "black")
       .attr("opacity", 0.7)
       .on("mouseover", function(event, d) {
         tip.style("display", "block")
