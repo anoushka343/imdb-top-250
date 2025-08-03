@@ -7,7 +7,7 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     body {
-      background: #842A2A;
+      background: #C41E3A;
       font-family: 'Courier New', Courier, monospace;
       text-align: center;
       margin: 0;
@@ -28,7 +28,7 @@
       margin-bottom: 10px;
     }
     svg {
-      background: #F4C790;
+      background: #FFF5E1;
       border: 1px solid #ccc;
       margin: auto;
       display: block;
@@ -42,6 +42,7 @@
       display: none;
     }
     .desc-box {
+      /*description box for each chart*/
       width: 80%;
       min-height: 60px;
       margin: 10px auto;
@@ -56,11 +57,15 @@
 </head>
 <body>
 
+
   <div id="controls">
+    <!--Back and next button -->
+    <!--previous disabled for first slide, next disabled for last night-->
     <button id="prev" disabled>Back</button>
     <button id="next">Next</button>
   </div>
 
+  <!--genre selctor for last dashboard scene-->
   <div id="genre-container">
     Filter by Genre:
     <select id="genre-select"></select>
