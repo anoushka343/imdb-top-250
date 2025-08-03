@@ -36,6 +36,7 @@ d3.select("#prev").on("click", () => {
 })
 .catch(err => console.error("csv failed", err));
 
+//helper to highlight the important parts of each chart
 
 /*d3.csv("data/movies.csv").then(raw => {
   const movies = raw.map(d => ({
@@ -225,7 +226,14 @@ function histogram(data) {
         return x(d.x1) - x(d.x0) - 1; })
       .attr("height", function(d) { 
         return height - y(d.length); })
-      .attr("fill", "#7B8FFF");
+      .attr("fill", function(d)) {
+        if(d.x0 >= 9) {
+          return "#EE6C4D";
+        }
+        else {
+          return "#7B8FFF"; 
+        }
+      }
   
   //add everything to the svg tag
   svg.append("g")
@@ -344,7 +352,14 @@ function scatterplot(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "#7B8FFF")
+      .attr("fill", function(d) {
+        if (d.rating >= 9) {
+          return "#EE6C4D";
+        } else {
+          return "#7B8FFF";
+        }
+
+      })
       .attr("opacity", 0.7);
     
       //add all the axes tickets and text
@@ -479,7 +494,14 @@ function top5(data) {
       .attr("width", function(d) { 
         return x(d.rating); })
       .attr("height", y.bandwidth())
-      .attr("fill", "#7B8FFF");
+      .attr("fill", function(d,i){
+        if(i ===0) {
+          return "#EE6C4D";
+        }
+        else {
+          return "#7B8FFF";
+        }
+      });
   //add the x and y axis to the chart
   svg.append("g").call(d3.axisLeft(y));
   svg.append("g")
@@ -608,7 +630,7 @@ function renderDashboard(data) {
       .attr("cy", function(d) { 
         return y(d.rating); })
       .attr("r", 4)
-      .attr("fill", "black")
+      .attr("fill", "#7B8FFF")
       .attr("opacity", 0.7)
       .on("mouseover", function(event, d) {
         tip.style("display", "block")
