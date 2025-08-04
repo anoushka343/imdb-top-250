@@ -36,17 +36,6 @@ d3.select("#prev").on("click", () => {
 })
 
 
-//helper to highlight the important parts of each chart
-
-/*d3.csv("data/movies.csv").then(raw => {
-  const movies = raw.map(d => ({
-    title:  d.name,
-    year:   +d.year,
-    rating: +d.rating,
-    genre:  d.genre
-  }));*/
-
-
 
 //this will draw all the scenes and controls
 function draw(data) {
@@ -82,31 +71,7 @@ function draw(data) {
   scenes[count](data);
 }
 
-/*
-function draw(data) {
- if (count === 0) {
-    d3.select("#prev").property("disabled", true);
-  } else {
-    d3.select("#prev").property("disabled", false);
-  }
 
-  if (count === scenes.length - 1) {
-    d3.select("#next").property("disabled", true);
-  } else {
-    d3.select("#next").property("disabled", false);
-  }
-
-  if (count === scenes.length - 1) {
-    d3.select("#genre-container").style("display", "block");
-  } else {
-    d3.select("#genre-container").style("display", "none");
-  }
-
-  d3.select("#charts").html("");
-  d3.select("#tooltip").style("display", "none");
-
-  scenes[count](data);
-}*/
 
 function intro() {
   const container = d3.select("#charts");
@@ -119,119 +84,7 @@ function intro() {
     .text("Hello! In this visualization you'll explore the top IMDb‑rated Hollywood films.");
 }
 
-/*
-example code for histogram:
-<script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-// get the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv", function(data) {
-
-  // X axis: scale and draw:
-  var x = d3.scaleLinear()
-      .domain([0, 1000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
-      .range([0, width]);
-  svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-  // set the parameters for the histogram
-  var histogram = d3.histogram()
-      .value(function(d) { return d.price; })   // I need to give the vector of value
-      .domain(x.domain())  // then the domain of the graphic
-      .thresholds(x.ticks(70)); // then the numbers of bins
-
-  // And apply this function to data to get the bins
-  var bins = histogram(data);
-
-  // Y axis: scale and draw:
-  var y = d3.scaleLinear()
-      .range([height, 0]);
-      y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
-  svg.append("g")
-      .call(d3.axisLeft(y));
-
-  // append the bar rectangles to the svg element
-  svg.selectAll("rect")
-      .data(bins)
-      .enter()
-      .append("rect")
-        .attr("x", 1)
-        .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
-        .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
-        .attr("height", function(d) { return height - y(d.length); })
-        .style("fill", "#69b3a2")
-
-});
-</script>
-*/
-
-/*
-annotation code:const annotations = [
-  {
-    note: {
-      label: "Here is the annotation label",
-      title: "Annotation title"
-    },
-    x: 100,
-    y: 100,
-    dy: 100,
-    dx: 100
-  }
-]
-
-// Add annotation to the chart
-// Features of the annotation
-const annotations = [
-  {
-    note: {
-      label: "Here is the annotation label",
-      title: "Annotation title"
-    },
-    x: 100,
-    y: 100,
-    dy: 100,
-    dx: 100
-  }
-]
-
-// Add annotation to the chart
-// Features of the annotation
-const annotations = [
-  {
-    note: {
-      label: "Here is the annotation label",
-      title: "Annotation title"
-    },
-    x: 100,
-    y: 100,
-    dy: 100,
-    dx: 100
-  }
-]
-const makeAnnotations = d3.annotation()
-  .annotations(annotations)
-d3.select("#example1")
-  .append("g")
-  .call(makeAnnotations)
-
-
-</script>
-
-*/
 function histogram(data) {
   const margin = {top: 20, right: 20, bottom: 50, left: 60};
   const total_width  = 600;
@@ -342,57 +195,7 @@ svg.append("g")
 
 }
 
-/*
-example code: 
-<script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
-
-  // Add X axis
-  var x = d3.scaleLinear()
-    .domain([0, 4000])
-    .range([ 0, width ]);
-  svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
-
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain([0, 500000])
-    .range([ height, 0]);
-  svg.append("g")
-    .call(d3.axisLeft(y));
-
-  // Add dots
-  svg.append('g')
-    .selectAll("dot")
-    .data(data)
-    .enter()
-    .append("circle")
-      .attr("cx", function (d) { return x(d.GrLivArea); } )
-      .attr("cy", function (d) { return y(d.SalePrice); } )
-      .attr("r", 1.5)
-      .style("fill", "#69b3a2")
-
-})
-
-</script>
-*/
 function scatterplot(data) {
   const margin = {top: 20, right: 20, bottom: 50, left: 60};
   const total_width  = 600;
@@ -491,78 +294,17 @@ svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 
 }
 
-/*
-example code:
-<script>
 
-
-// set the dimensions and margins of the graph
-var margin = {top: 20, right: 30, bottom: 40, left: 90},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-// Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function(data) {
-
-  // Add X axis
-  var x = d3.scaleLinear()
-    .domain([0, 13000])
-    .range([ 0, width]);
-  svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
-    .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
-
-  // Y axis
-  var y = d3.scaleBand()
-    .range([ 0, height ])
-    .domain(data.map(function(d) { return d.Country; }))
-    .padding(.1);
-  svg.append("g")
-    .call(d3.axisLeft(y))
-
-  //Bars
-  svg.selectAll("myRect")
-    .data(data)
-    .enter()
-    .append("rect")
-    .attr("x", x(0) )
-    .attr("y", function(d) { return y(d.Country); })
-    .attr("width", function(d) { return x(d.Value); })
-    .attr("height", y.bandwidth() )
-    .attr("fill", "#69b3a2")
-
-
-    // .attr("x", function(d) { return x(d.Country); })
-    // .attr("y", function(d) { return y(d.Value); })
-    // .attr("width", x.bandwidth())
-    // .attr("height", function(d) { return height - y(d.Value); })
-    // .attr("fill", "#69b3a2")
-
-})
-
-</script>
-*/
 function top5(data) {
   const top5 = data.slice()
-    .sort(function(a,b) { return b.rating - a.rating; })
+    .sort(function(a,b) { 
+      return b.rating - a.rating; })
     .slice(0,5);
 
   const margin = {top: 20, right: 20, bottom: 50, left: 200};
   const total_width  = 700;
-  const  total_height = 400;
-  const width  = total_width - margin.left - margin.right;
+  const total_height = 400;
+  const width = total_width - margin.left - margin.right;
   const height = total_height - margin.top  - margin.bottom;
   const container = d3.select("#charts");
   container.append("h2").text("Top 5 Movies");
@@ -641,7 +383,7 @@ function dashboard(data) {
     }))
   ).sort();
 
-    
+    //add filter genre box for the user
   const sel = d3.select("#genre-select");
   if (sel.selectAll("option").empty()) {
     sel.selectAll("option")
@@ -654,7 +396,7 @@ function dashboard(data) {
     sel.on("change", function() { 
       renderDashboard(data); });
   }
-
+  //call helper to make the dashboard
   renderDashboard(data);
 
   
@@ -663,13 +405,17 @@ function dashboard(data) {
 function renderDashboard(data) {
   d3.select("#charts").html("");
 
+  //title for the scene 
   const container = d3.select("#charts");
   container.append("h2").text("Explore All Movies");
+  //add the text box
   container.append("textarea")
     .attr("class", "desc-box")
     .attr("readonly", true)
     .text("Use the dropdown above to filter by genre and hover over dots for titles and ratings. Any ratings greater than equal to 9 will be highlighted in yellow.");
-  const chosen = d3.select("#genre-select").property("value");
+  
+    //filter based on seelction, all = display all movies, otherwise display specifics
+    const chosen = d3.select("#genre-select").property("value");
   let filter;
   if (chosen === "All") {
     filter = data;
@@ -680,11 +426,12 @@ function renderDashboard(data) {
     });
   }
 
+  //set sizes
   const margin = {top: 20, right: 20, bottom: 50, left: 60};
-  const total_width  = 600;
-  const total_height  = 400;
-  const width  = total_width - margin.left - margin.right;
-  const height = total_height - margin.top  - margin.bottom;
+  const total_width = 600;
+  const total_height = 400;
+  const width = total_width - margin.left - margin.right;
+  const height= total_height - margin.top  - margin.bottom;
 
   const svg = d3.select("#charts")
     .append("svg")
@@ -693,6 +440,7 @@ function renderDashboard(data) {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+      //add axes
   const x = d3.scaleLinear()
     .domain(d3.extent(filter, function(d) { 
       return d.year; }))
@@ -705,6 +453,7 @@ function renderDashboard(data) {
     .nice()
     .range([height, 0]);
 
+    //add to svg tab
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x).tickFormat(d3.format("d")));
@@ -724,8 +473,12 @@ function renderDashboard(data) {
       .attr("text-anchor", "middle")
       .text("IMDb Rating");
 
+  //create the tootlip
   const tip = d3.select("#tooltip");
 
+      //if circle is hoevered on, display star rating and name of the movie
+      //yellow are above 9, keep that standard
+      //rest are the coral
   svg.selectAll("circle")
     .data(filter)
     .enter().append("circle")
